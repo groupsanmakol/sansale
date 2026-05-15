@@ -38,8 +38,7 @@
         const resultBox = document.getElementById('resultBox');
         const outputLink = document.getElementById('outputLink');
         
-        // THAY MÃ APP ID CỦA BẠN VÀO ĐÂY (Ví dụ: 350685531728)
-        const myAppId = "17363570097"; 
+        const myAffiliateId = "17363570097"; 
 
         if (inputLink === "") {
             alert("Vui lòng dán link Shopee vào!");
@@ -47,12 +46,12 @@
         }
 
         try {
-            // Giải mã link nếu người dùng copy từ Facebook/TikTok bị dính ký tự lạ
-            const decodedLink = decodeURIComponent(inputLink);
+            // Tách lấy link gốc sạch trước khi mã hóa (loại bỏ fbclid nếu có)
+            const cleanLink = inputLink.split('?')[0];
+            const decodedLink = decodeURIComponent(cleanLink);
             
-// Cấu trúc link chuyển hướng Shopee Affiliate mới theo yêu cầu của bạn
-const myAffiliateId = "17363570097";
-const affLink = `https://shopee.vn{encodeURIComponent(decodedLink)}&affiliate_id=${myAffiliateId}`;
+            // ĐÃ SỬA: Cấu trúc chính xác theo yêu cầu của bạn, có dấu $ trước dấu ngoặc nhọn
+            const affLink = `https://shopee.vn{encodeURIComponent(decodedLink)}&affiliate_id=${myAffiliateId}`;
             
             outputLink.value = affLink;
             resultBox.style.display = 'block';

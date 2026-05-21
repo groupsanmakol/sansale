@@ -123,7 +123,7 @@
             class="btn-copy"
             onclick="copyToClipboard()"
         >
-            Sao chép link lấy mã
+            Sao chép link lấy mã 25%
         </button>
 
         <a
@@ -288,15 +288,21 @@ ${linkBuoc2}`;
         outputLink.value =
             finalTemplate;
 
-        // backup 1
-        window.backupTemplate1 =
-`Cách lấy mã 22% nhé
-https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBackup1}`;
-
-        // backup 2
-        window.backupTemplate2 =
-`Cách lấy mã 22% nhé
+// backup 1
+window.backupTemplate1 =
+`Cách lấy mã 22%, đảm bảo làm đủ 2 bước nhé
+Bước 1: Ấn vào link
+https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBackup1}
+Bước 2: Quay lại ấn vào link sau để mua với mã giảm giá
 https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBackup2}`;
+
+// backup 2
+window.backupTemplate2 =
+`Cách lấy mã 22%, đảm bảo làm đủ 2 bước nhé
+Bước 1: Ấn vào link
+https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBackup2}
+Bước 2: Quay lại ấn vào link sau để mua với mã giảm giá
+https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBackup1}`;
 
     } catch (error) {
 

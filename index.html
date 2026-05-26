@@ -1,223 +1,215 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tạo Link Shopee</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tạo Link Shopee</title>
 
-    <style>
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f4f9;
+    text-align:center;
+    padding:50px 20px;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            text-align: center;
-            padding: 50px 20px;
-        }
+.container{
+    max-width:500px;
+    background:#fff;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
+    margin:0 auto;
+}
 
-        .container {
-            max-width: 500px;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin: 0 auto;
-        }
+h1{
+    color:#ee4d2d;
+    font-size:24px;
+    margin-bottom:20px;
+}
 
-        h1 {
-            color: #ee4d2d;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
+input[type=text]{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+    box-sizing:border-box;
+}
 
-        input[type="text"] {
+button{
+    width:100%;
+    padding:12px;
+    background:#ee4d2d;
+    color:#fff;
+    border:none;
+    border-radius:5px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:16px;
+    margin-top:10px;
+}
 
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
+button:hover{
+    background:#d33b1c;
+}
 
-        button {
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
 
-            width: 100%;
-            padding: 12px;
-            background-color: #ee4d2d;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-        }
+.result-box{
+    margin-top:20px;
+    display:none;
+    background:#f9f9f9;
+    padding:15px;
+    border-radius:5px;
+    border:1px dashed #ee4d2d;
+}
 
-        button:hover {
-            background-color: #d33b1c;
-        }
+.btn-copy{
+    background:#0084ff;
+}
 
-        .result-box {
+.btn-copy:hover{
+    background:#0066cc;
+}
 
-            margin-top: 20px;
-            display: none;
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 5px;
-            border: 1px dashed #ee4d2d;
-        }
-
-        .btn-copy {
-            background-color: #0084ff;
-        }
-
-        .btn-copy:hover {
-            background-color: #0066cc;
-        }
-
-    </style>
-
+.status-text{
+    font-weight:bold;
+    color:#333;
+    margin-bottom:12px;
+}
+</style>
 </head>
 
 <body>
 
 <div class="container">
 
-    <h1>Tạo Link Shopee</h1>
+<h1>Tạo Link Shopee</h1>
 
-    <div
-    style="
-        margin-bottom: 24px;
-        line-height: 1.6;
-    "
->
-    <div
-        style="
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        "
-    >
-        <span style="color:#000;">
-            Các khung giờ có thêm lượt dùng mã FB 25%:
-        </span><br>
-
-        <span style="color:#ee4d2d;">
-            0H, 9H, 15H, 20H
-        </span>
+<div style="margin-bottom:24px;line-height:1.6;">
+    <div style="font-size:18px;font-weight:700;margin-bottom:12px;">
+        <span>Các khung giờ có thêm lượt dùng mã FB 25%:</span><br>
+        <span style="color:#ee4d2d;">0H, 9H, 15H, 20H</span>
     </div>
 
-    <div
-        style="
-            font-size:16px;
-            color:#333;
-        "
-    >
+    <div style="font-size:16px;color:#333;">
         Dán link sản phẩm Shopee cần mua vào đây
     </div>
 </div>
+
+<input
+    type="text"
+    id="shopeeLink"
+    placeholder="Nhập link Shopee..."
+>
+
+<button
+    id="generateBtn"
+    onclick="generateAffLink()"
+>
+    Tạo Link Ngay
+</button>
+
+<div
+    class="result-box"
+    id="resultBox"
+>
+    <p
+        class="status-text"
+        id="statusText"
+    >
+        ⏳ Đang xử lý link...
+    </p>
+
     <input
-        type="text"
-        id="shopeeLink"
-        placeholder="Nhập link Shopee..."
+        type="hidden"
+        id="outputLink"
     >
 
-    <button onclick="generateAffLink()">
-        Tạo Link Ngay
+    <button
+        id="copyBtn"
+        class="btn-copy"
+        onclick="copyToClipboard()"
+        disabled
+    >
+        Đang xử lý...
     </button>
 
-    <div
-        class="result-box"
-        id="resultBox"
+    <a
+        href="https://www.facebook.com/share/p/1HBc1Lj8on/"
+        target="_blank"
+        style="
+            display:block;
+            width:100%;
+            padding:12px;
+            background:#42b72a;
+            color:#fff;
+            text-decoration:none;
+            border-radius:5px;
+            font-weight:bold;
+            margin-top:10px;
+            box-sizing:border-box;
+        "
     >
+        Dán vào post này để lấy mã 25%
+    </a>
 
-        <p
-            style="
-                font-weight:bold;
-                color:#333;
-            "
-        >
-            Link đã sẵn sàng để copy
-        </p>
-
-        <!-- Ẩn hoàn toàn dữ liệu -->
-        <input
-            type="hidden"
-            id="outputLink"
-        >
-
-        <button
-            class="btn-copy"
-            onclick="copyToClipboard()"
-        >
-            Sao chép link lấy mã 25%
-        </button>
-
-        <a
-            href="https://www.facebook.com/share/p/1HBc1Lj8on/"
-            target="_blank"
-            style="
-                display:block;
-                width:100%;
-                padding:12px;
-                background-color:#42b72a;
-                color:white;
-                text-decoration:none;
-                border-radius:5px;
-                font-weight:bold;
-                margin-top:10px;
-                box-sizing:border-box;
-            "
-        >
-            Dán vào post này để lấy mã 25%
-        </a>
-
+    <div
+        style="
+            margin-top:20px;
+            padding-top:15px;
+            border-top:1px dashed #ccc;
+        "
+    >
         <div
             style="
-                margin-top:20px;
-                padding-top:15px;
-                border-top:1px dashed #ccc;
+                font-weight:bold;
+                margin-bottom:10px;
+                color:#555;
             "
         >
-
-            <div
-                style="
-                    font-weight:bold;
-                    margin-bottom:10px;
-                    color:#555;
-                "
-            >
-                Link dự phòng
-            </div>
-
-            <button
-                onclick="copyBackup1()"
-                style="
-                    background:#ff9800;
-                "
-            >
-                Sao chép link lấy mã 22% (1)
-            </button>
-
-            <button
-                onclick="copyBackup2()"
-                style="
-                    background:#ff9800;
-                    margin-top:8px;
-                "
-            >
-                Sao chép link lấy mã 22% (2)
-            </button>
-
+            Link dự phòng
         </div>
 
-    </div>
+        <button
+            onclick="copyBackup1()"
+            style="background:#ff9800;"
+        >
+            Sao chép link lấy mã 22% (1)
+        </button>
 
+        <button
+            onclick="copyBackup2()"
+            style="
+                background:#ff9800;
+                margin-top:8px;
+            "
+        >
+            Sao chép link lấy mã 22% (2)
+        </button>
+    </div>
+</div>
 </div>
 
 <script>
 
-async function generateAffLink() {
+let isLoading = false;
+
+document
+.getElementById("shopeeLink")
+.addEventListener("keypress",function(e){
+    if(e.key==="Enter"){
+        generateAffLink();
+    }
+});
+
+async function generateAffLink(){
+
+    if(isLoading) return;
 
     let inputLink =
         document
@@ -225,152 +217,190 @@ async function generateAffLink() {
         .value
         .trim();
 
+    if(!inputLink){
+        alert("Vui lòng nhập link Shopee");
+        return;
+    }
+
+    if(
+        !inputLink.startsWith("http://") &&
+        !inputLink.startsWith("https://")
+    ){
+        inputLink = "https://" + inputLink;
+    }
+
     const resultBox =
         document.getElementById("resultBox");
 
     const outputLink =
         document.getElementById("outputLink");
 
-    // Affiliate IDs
+    const copyBtn =
+        document.getElementById("copyBtn");
+
+    const statusText =
+        document.getElementById("statusText");
+
+    const generateBtn =
+        document.getElementById("generateBtn");
+
     const idBuoc1 = "17307950127";
     const idBuoc2 = "17363570097";
-
-    // backup 22%
     const idBackup1 = "17338530051";
     const idBackup2 = "17397780242";
 
-    if (!inputLink) {
+    isLoading = true;
 
-        alert("Vui lòng nhập link Shopee");
+    generateBtn.disabled = true;
+    generateBtn.innerText = "Đang xử lý...";
 
-        return;
-    }
+    resultBox.style.display = "block";
 
-    // tự thêm https
-    if (
-        !inputLink.startsWith("http://") &&
-        !inputLink.startsWith("https://")
-    ) {
+    statusText.innerText =
+        "⏳ Đang xử lý link...";
 
-        inputLink = "https://" + inputLink;
-    }
+    copyBtn.disabled = true;
+    copyBtn.innerText =
+        "Đang xử lý...";
 
-    resultBox.style.display = "none";
+    outputLink.value = "";
 
-    try {
+    window.backupTemplate1 = "";
+    window.backupTemplate2 = "";
 
-        // gọi Worker
+    try{
+
         const response = await fetch(
             "https://shopee-resolve.onedayofu01.workers.dev",
             {
-                method: "POST",
-
-                headers: {
-                    "Content-Type":
-                    "application/json"
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
                 },
-
-                body: JSON.stringify({
-                    url: inputLink
+                body:JSON.stringify({
+                    url:inputLink
                 })
             }
         );
 
-        const data =
-            await response.json();
+        const data = await response.json();
 
-        if (!data.success) {
-
+        if(!data.success){
             throw new Error(data.error);
         }
 
-        // link sạch
-        const cleanLink =
-            data.final;
+        const cleanLink = data.final;
 
-        // tạo affiliate links
         const linkBuoc1 =
-            "https://s.shopee.vn/an_redir?origin_link=" +
-            encodeURIComponent(cleanLink) +
-            "&affiliate_id=" +
-            idBuoc1;
+            `https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBuoc1}`;
 
         const linkBuoc2 =
-            "https://s.shopee.vn/an_redir?origin_link=" +
-            encodeURIComponent(cleanLink) +
-            "&affiliate_id=" +
-            idBuoc2;
+            `https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBuoc2}`;
 
-        // template chính
         const finalTemplate =
 `Cách lấy mã 25% FB, đảm bảo làm đủ 2 bước nhé
 Bước 1: Ấn vào link
 ${linkBuoc1}
+
 Bước 2: Quay lại ấn vào link sau để mua với mã giảm giá
 ${linkBuoc2}`;
 
         outputLink.value =
             finalTemplate;
-        resultBox.style.display = "block";
 
-// backup 1
-window.backupTemplate1 =
+        window.backupTemplate1 =
 `Cách lấy mã 22%, đảm bảo làm đủ 2 bước nhé
 Bước 1: Ấn vào link
 https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBackup1}
+
 Bước 2: Quay lại ấn vào link sau để mua với mã giảm giá
 https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBuoc2}`;
 
-// backup 2
-window.backupTemplate2 =
+        window.backupTemplate2 =
 `Cách lấy mã 22%, đảm bảo làm đủ 2 bước nhé
 Bước 1: Ấn vào link
 https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBackup2}
+
 Bước 2: Quay lại ấn vào link sau để mua với mã giảm giá
 https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBuoc2}`;
 
-    } catch (error) {
+        statusText.innerText =
+            "Link đã sẵn sàng để copy";
+
+        copyBtn.disabled = false;
+        copyBtn.innerText =
+            "Sao chép link lấy mã 25%";
+
+    }catch(error){
 
         console.log(error);
 
-        outputLink.value =
-            "Không xử lý được link.";
+        statusText.innerText =
+            "❌ Không xử lý được link";
+
+        copyBtn.disabled = true;
+        copyBtn.innerText =
+            "Xử lý thất bại";
     }
+
+    isLoading = false;
+
+    generateBtn.disabled = false;
+    generateBtn.innerText =
+        "Tạo Link Ngay";
 }
 
-function copyToClipboard() {
+function copyToClipboard(){
 
-    const copyText =
-        document.getElementById(
-            "outputLink"
-        ).value;
+    const text =
+        document
+        .getElementById("outputLink")
+        .value;
 
-    navigator.clipboard.writeText(
-        copyText
-    );
+    if(!text){
+        alert(
+            "Link vẫn đang xử lý, vui lòng chờ..."
+        );
+        return;
+    }
+
+    navigator.clipboard.writeText(text);
 
     alert("Đã copy!");
 }
 
-function copyBackup1() {
+function copyBackup1(){
+
+    if(!window.backupTemplate1){
+        alert(
+            "Link vẫn đang xử lý..."
+        );
+        return;
+    }
 
     navigator.clipboard.writeText(
-        window.backupTemplate1 || "Chưa xử lý xong"
+        window.backupTemplate1
     );
 
     alert("Đã copy link dự phòng 1!");
 }
 
-function copyBackup2() {
+function copyBackup2(){
+
+    if(!window.backupTemplate2){
+        alert(
+            "Link vẫn đang xử lý..."
+        );
+        return;
+    }
 
     navigator.clipboard.writeText(
-        window.backupTemplate2 || "Chưa xử lý xong"
+        window.backupTemplate2
     );
 
     alert("Đã copy link dự phòng 2!");
 }
 
 </script>
-
 </body>
 </html>

@@ -301,7 +301,7 @@ async function generateAffLink(){
 `Cách lấy mã 25% FB, đảm bảo làm đủ 2 bước nhé
 Bước 1: Ấn vào link
 ${linkBuoc1}
-Bước 2: Quay lại ấn vào link sau để mua với mã giảm giá
+Bước 2: Quay lại ấn vào link sau để mua với mã giảm giá + hoàn tiền
 ${linkBuoc2}`;
 
         outputLink.value =
@@ -311,14 +311,14 @@ ${linkBuoc2}`;
 `Cách lấy mã 22%, đảm bảo làm đủ 2 bước nhé
 Bước 1: Ấn vào link
 https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBackup1}
-Bước 2: Quay lại ấn vào link sau để mua với mã giảm giá
+Bước 2: Quay lại ấn vào link sau để mua với mã giảm giá + hoàn tiền
 https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBuoc2}`;
 
         window.backupTemplate2 =
 `Cách lấy mã 22%, đảm bảo làm đủ 2 bước nhé
 Bước 1: Ấn vào link
 https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBackup2}
-Bước 2: Quay lại ấn vào link sau để mua với mã giảm giá
+Bước 2: Quay lại ấn vào link sau để mua với mã giảm giá + hoàn tiền
 https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBuoc2}`;
 
         statusText.innerText =

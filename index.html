@@ -244,10 +244,10 @@ async function generateAffLink(){
     const generateBtn =
         document.getElementById("generateBtn");
 
-    const idBuoc1 = "17316330000";
+    const idBuoc1 = "17395740358";
     const idBuoc2 = "17363570097";
     const idBackup1 = "17352550103";
-    const idBackup2 = "17395740358";
+    const idBackup2 = "17316330000";
 
     isLoading = true;
 
@@ -298,7 +298,7 @@ async function generateAffLink(){
             `https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBuoc2}`;
 
         const finalTemplate =
-`Cách lấy mã 25% FB, đảm bảo làm đủ 2 bước nhé
+`Cách lấy mã 22% FB, đảm bảo làm đủ 2 bước nhé
 Bước 1: Ấn vào link
 ${linkBuoc1}
 Bước 2: Quay lại ấn vào link sau để mua với mã giảm giá + hoàn tiền
@@ -308,7 +308,7 @@ ${linkBuoc2}`;
             finalTemplate;
 
         window.backupTemplate1 =
-`Cách lấy mã 22%, đảm bảo làm đủ 2 bước nhé
+`Cách lấy mã 22% IG, đảm bảo làm đủ 2 bước nhé
 Bước 1: Ấn vào link
 https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBackup1}
 Bước 2: Quay lại ấn vào link sau để mua với mã giảm giá + hoàn tiền

@@ -91,11 +91,6 @@ button:disabled{
 <h1>Tạo Link Shopee</h1>
 
 <div style="margin-bottom:24px;line-height:1.6;">
-    <div style="font-size:18px;font-weight:700;margin-bottom:12px;">
-        <span>Các khung giờ có thêm lượt dùng mã FB 25%:</span><br>
-        <span style="color:#ee4d2d;">0H, 9H, 15H, 20H</span>
-    </div>
-
     <div style="font-size:16px;color:#333;">
         Dán link sản phẩm Shopee cần mua vào đây
     </div>
@@ -105,6 +100,12 @@ button:disabled{
     type="text"
     id="shopeeLink"
     placeholder="Nhập link sản phẩm Shopee..."
+>
+
+<input
+    type="text"
+    id="subId"
+    placeholder="Nhập SubID (không bắt buộc)"
 >
 
 <button
@@ -216,7 +217,13 @@ async function generateAffLink(){
         .getElementById("shopeeLink")
         .value
         .trim();
-
+    
+    const subId =
+    document
+    .getElementById("subId")
+    .value
+    .trim();
+    
     if(!inputLink){
         alert("Vui lòng nhập link Shopee");
         return;
@@ -294,8 +301,12 @@ async function generateAffLink(){
         const linkBuoc1 =
             `https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBuoc1}`;
 
-        const linkBuoc2 =
-            `https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBuoc2}`;
+        let linkBuoc2 =
+`https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBuoc2}`;
+
+if(subId){
+    linkBuoc2 += `&sub_id=${encodeURIComponent(subId)}`;
+}
 
         const finalTemplate =
 `Cách lấy mã 25% FB, đảm bảo làm đủ 2 bước nhé
@@ -312,14 +323,14 @@ ${linkBuoc2}`;
 Bước 1: Ấn vào link
 https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBackup1}
 Bước 2: Quay lại ấn vào link sau để mua với mã giảm giá + hoàn tiền
-https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBuoc2}`;
+${linkBuoc2}`;
 
         window.backupTemplate2 =
 `Cách lấy mã 22% FB, đảm bảo làm đủ 2 bước nhé
 Bước 1: Ấn vào link
 https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBackup2}
 Bước 2: Quay lại ấn vào link sau để mua với mã giảm giá + hoàn tiền
-https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBuoc2}`;
+${linkBuoc2}}`;
 
         statusText.innerText =
             "Link đã sẵn sàng để copy";

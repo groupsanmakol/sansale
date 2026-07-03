@@ -278,15 +278,16 @@ async function generateAffLink(){
     try{
 
         const response = await fetch(
-            "https://shopee-resolve.onedayofu01.workers.dev",
+    "https://shopee.sanmakol.com",
             {
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"
                 },
-                body:JSON.stringify({
-                    url:inputLink
-                })
+                body: JSON.stringify({
+    url: inputLink,
+    sub_id: subId
+})
             }
         );
 
@@ -296,16 +297,14 @@ async function generateAffLink(){
             throw new Error(data.error);
         }
 
-        const cleanLink = data.final;
+        const cleanLink = data.data.cleanLink;
+
+const shortLink = data.data.buyLink;
 
         const linkBuoc1 =
             `https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBuoc1}`;
 
-        let linkBuoc2 =
-`https://s.shopee.vn/an_redir?origin_link=${encodeURIComponent(cleanLink)}&affiliate_id=${idBuoc2}`;
-
-if(subId){
-    linkBuoc2 += `&sub_id=${encodeURIComponent(subId)}`;
+        const linkBuoc2 = shortLink;
 }
 
         const finalTemplate =
